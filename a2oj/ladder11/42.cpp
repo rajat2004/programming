@@ -1,37 +1,32 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+bool is_magic(string s, int index) {
+    if (index >= s.length()) return true;
+
+    if(s[index] != '1')
+        return false;
+
+    if(index + 1 == s.length()) return true;
+    if(s[index+1]=='4') {
+        if(index+2 == s.length()) return true;
+
+        if (s[index+2]=='4') {
+            return is_magic(s, index+3);
+        }
+        else {
+            return is_magic(s, index+2);
+        }
+    } else 
+        return is_magic(s, index+1);
+}
+
 int main() {
     string s;
     cin >> s;
-    for(int )
-
-    // for(int i=0; i<s.length();) {
-    //     if(s[i]!='1' && s[i]!='4') {
-    //         cout << "NO" << endl;
-    //         return 0;
-    //     }
-    //     else {
-    //         if(s[i]=='1') {
-    //             if(i!=s.length()-1) {
-    //             if(s[i+1]=='1') {
-    //                 // 1
-    //                 i+=1;
-    //                 continue;
-    //             }
-    //             else {
-    //                 if(s[i+1]=='4') {
-    //                     // 14 or 144
-    //                     i+=1;
-    //                     if (i==s.length()-1) break;
-    //                     if (i!=(s.length()-1) && s[i+1]=='4')
-    //                 }
-    //             }
-    //             } else {
-    //                 break;
-    //             }
-    //         }
-    //     }
-    // }
+    if(is_magic(s, 0))
+        cout << "YES" << endl;
+    else 
+        cout << "NO" << endl;
     return 0;
 }
