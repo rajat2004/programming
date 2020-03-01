@@ -10,4 +10,4 @@ addons:
     - make
 
 script:
-- ./a2oj/ladder11/test.sh
+- cd a2oj/ladder11 && ./test.sh
