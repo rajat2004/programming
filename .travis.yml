@@ -1,0 +1,13 @@
+language: cpp
+os: linux
+dist: bionic
+
+addons:
+  apt:
+    packages:
+    - gcc
+    - g++
+    - make
+
+script:
+- ./a2oj/ladder11/test.sh
