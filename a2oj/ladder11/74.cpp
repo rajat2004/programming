@@ -10,10 +10,18 @@ int main() {
         return 0;
     }
 
+    for(int i=0; i<1001; i++)
+        c[i]=0;
+
     for(int i=0; i<n; i++) {
         cin >> arr[i];
         c[arr[i]]++;
-        if(c[arr[i]]>(n+1)/2) {
+    }
+
+    int lim = (n+1)/2;
+
+    for(int i=1; i<1001; i++) {
+        if(c[i]>lim) {
             cout << "NO\n";
             return 0;
         }
