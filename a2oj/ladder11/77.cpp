@@ -41,7 +41,7 @@ int main() {
     }
     if(s%n==0)
         cout << n << ln;
-    else 
+    else
         cout << n-1 << ln;
     return 0;
 }

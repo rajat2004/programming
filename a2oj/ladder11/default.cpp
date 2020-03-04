@@ -32,26 +32,6 @@ ll NUM = 1e9+7;
 #define zer ll(0)
 
 int main() {
-    int n,m;
-    cin >> n >> m;
-    int n_min=INT_MAX,n_max=INT_MIN,m_min=INT_MAX,a;
-
-    forn(i,n) {
-        cin >> a;
-        n_min = min(a,n_min);
-        n_max = max(a,n_max);
-    }
-
-    forn(i,m) {
-        cin >> a;
-        m_min = min(m_min, a);
-    }
-    int d = max(2*n_min,n_max);
-
-    if(d < m_min)
-        cout << d << ln;
-    else
-        cout << "-1" << ln;
-
+    fast_cin();
     return 0;
 }
