@@ -35,14 +35,34 @@ int main() {
     fast_cin();
     int n;
     cin >> n;
-    int s1=0,s2=0,x,y;
+    int change[3]={0,0,0}, val;
     forn(i,n) {
-        scanf("%d %d", &x, &y);
-        s1+=x;
-        s2+=y;
+        cin >> val;
+
+        if (val==25) {
+            change[0]+=1;
+        } else if(val==50) {
+            if(change[0]==0) {
+                cout << "NO\n";
+                return 0;
+            }
+            change[0]--;
+            change[1]++;
+        } else {
+            if( !( (change[0]>=1 && change[1]>=1) || (change[0]>=3) ) ) {
+                cout << "NO\n";
+                return 0;
+            }
+
+            if (change[1]>=1 && change[0]>=1) {
+                change[1]--;
+                change[0]--;
+            } else {
+                change[0]-=3;
+            }
+            change[2]++;
+        }
     }
-    if(s1%2==0 && s2%2==0) {
-        cout << "0" << ln;
-    }
+    cout << "YES\n";
     return 0;
 }
