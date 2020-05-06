@@ -3,6 +3,7 @@
 using namespace std;
 
 typedef long long int ll;
+typedef long long unsigned llu;
 typedef long double ld;
 typedef pair<int,int> p32;
 typedef pair<ll,ll> p64;
@@ -33,15 +34,33 @@ ll NUM = 1e9+7;
 
 int main() {
     fast_cin();
-    int n,x,y;
+    int n;
+    llu arr[n+1];
+    llu sorted[n+1];
+
+    arr[0]=0;
+    sorted[0]=0;
+
     cin >> n;
-    forn(i,n) {
-        cin >> x >> y;
-        if(x!=y) {
-            cout << "Happy Alex" << ln;
-            return 0;
-        }
+    forsn(i,1,n+1) {
+        cin >> arr[i];
+        sorted[i] = arr[i];
     }
-    cout << "Poor Alex" << ln;
+
+    sort(sorted, sorted+n+1);
+
+    forn(i,n+1) {
+        arr[i+1]+=arr[i];
+        sorted[i+1]+=sorted[i];
+    }
+
+    llu m,t,l,r;
+    cin >> m;
+    while(m--) {
+        cin >> t >> l >> r;
+        if(t==1)    cout << arr[r] - arr[l-1] << ln;
+        else        cout << sorted[r] - sorted[l-1] << ln;
+    }
+
     return 0;
 }

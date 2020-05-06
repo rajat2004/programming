@@ -40,7 +40,7 @@ int main() {
     sort(a,a+m);
     int min_diff = INT_MAX;
 
-    forn(i,m-n) {
+    forn(i,m-n+1) {
         min_diff = min(min_diff, a[i+n-1]-a[i]);
     }
     cout << min_diff << ln;

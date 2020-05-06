@@ -31,17 +31,52 @@ ll NUM = 1e9+7;
 #define sz(x) ((ll)(x).size())
 #define zer ll(0)
 
+ll next(ll n) {
+    ll res = 0;
+    ll mul = 1;
+    ll mod;
+    while(n) {
+        mod = n%10;
+        if(mod <= 4)        res+=4*mul;
+        else if (mod<=7)    res+=7*mul;
+        else {
+            res+=4*mul;
+            n+=(14-mod);
+        }
+        mul*=10;
+        n/=10;
+    }
+    // dbg(res);
+    return res;
+
+}
+
 int main() {
     fast_cin();
-    int n,x,y;
-    cin >> n;
-    forn(i,n) {
-        cin >> x >> y;
-        if(x!=y) {
-            cout << "Happy Alex" << ln;
-            return 0;
+    ll l,r;
+    cin >> l >> r;
+    ll sum=0, cnext=next(l),last_next;
+
+    if (cnext >= r) sum=(r-l+1)*cnext;
+    else {
+        sum += (cnext-l+1)*cnext;
+
+        while (true)
+        {
+            last_next = cnext;
+            if (last_next > r) break;
+            cnext = next(cnext+1);
+            if (cnext >= r) {
+                sum += (r-last_next)*cnext;
+                break;
+            }
+            else sum+=(cnext-last_next)*cnext;
+            // dbg(sum);
         }
+
     }
-    cout << "Poor Alex" << ln;
+
+    cout << sum << ln;
+
     return 0;
 }

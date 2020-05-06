@@ -35,8 +35,8 @@ int main() {
     fast_cin();
     int n;
     cin >> n;
-    bool ar[n];
-    forn(i,n)   ar[i]=false;
+    bool ar[3000];
+    forn(i,3000)   ar[i]=false;
     int a;
     forn(i,n) {
         cin >> a;
