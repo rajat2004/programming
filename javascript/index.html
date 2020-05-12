@@ -1,10 +1,52 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="UTF-8" />
         <title>Testing</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css" />
+        <!-- <style>
+            body {
+                background-image: url(ad_logo.png);
+                /*background-image: url('file:///android_asset/tic-tac-toe/ad_logo.png');*/
+                background-repeat: no-repeat;
+                background-size: 100% 100%;
+                background-attachment: fixed;
+            }
+        </style> -->
     </head>
 
     <body>
+        <div id="img">
+            <img src="ad_logo.png">
+        </div>
+       <!--  <div class="container">
+            <div>
+                <h1 id="text"></h1>
+            </div>
+        </div> -->
+        <div class="container">
+            <!-- <div>
+                <img id="ad-logo" src="ad_logo.png">
+            </div> -->
+
+            <h1>Tic-Tac-Toe</h1>
+
+            <div class="play-area">
+            </div>
+
+            <h2 id="winner"></h2>
+            <button id="replay-btn" onclick="replay()">REPLAY</button>
+            <button id="close-btn" onclick="on_close()">CLOSE</button>
+            <button id="open-url" onclick="open_url()">URL</button>
+
+            <h2 id="debug"></h2>
+
+            <h2 id="timer"> </h2>
+
+            <!-- <script src="game.js"></script> -->
+
+        </div>
         <script src="scripts/main.js"></script>
     </body>
 </html>
