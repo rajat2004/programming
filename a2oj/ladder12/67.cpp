@@ -34,5 +34,19 @@ ll NUM = 1e9+7;
 
 int main() {
     fast_cin();
+    int n,m;
+    cin >> n >> m;
+
+    string s;
+    forn(i,n) {
+        cin >> s;
+        forn(j,m) {
+            if(s[j]!='-') {
+                if((i+j)%2==0) s[j] = 'W';
+                else s[j]='B';
+            }
+        }
+        cout << s << ln;
+    }
     return 0;
 }

@@ -34,5 +34,16 @@ ll NUM = 1e9+7;
 
 int main() {
     fast_cin();
+    ll a,b,c,x,y,z;
+    cin >> a >> b >> c;
+    ll sum_2 = (a+b+c)/2;
+    x = sum_2 - c;
+    y = sum_2 - a;
+    z = sum_2 - b;
+
+    if (((x+y)==b) && ((y+z)==c) && ((x+z)==a) && x>=0 && y>=0 && z>=0)
+        cout << x << " " << y << " " << z << ln;
+    else
+        cout << "Impossible" << ln;
     return 0;
 }

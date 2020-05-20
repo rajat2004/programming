@@ -34,5 +34,28 @@ ll NUM = 1e9+7;
 
 int main() {
     fast_cin();
+    lluu n,b,cmin=0,cmax=0,min_=INT_MAX,max_=0;
+    cin >> n;
+    forn(i,n) {
+        cin >> b;
+        if(b > max_) {
+            max_ = b;
+            cmax = 1;
+        }
+        else if (b==max_)   cmax++;
+
+        if(b<min_) {
+            min_ = b;
+            cmin = 1;
+        }
+        else if (b==min_)    cmin++;
+    }
+
+    lluu diff = max_-min_;
+    lluu ways = cmin*cmax;
+
+    if(diff==0) ways = (n*(n-1))/2;
+
+    cout << diff << " " << ways << ln;
     return 0;
 }
