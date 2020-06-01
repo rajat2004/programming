@@ -32,45 +32,23 @@ ll NUM = 1e9+7;
 #define sz(x) ((ll)(x).size())
 #define zer ll(0)
 
-ll sx(ll n) {
-    ll sum = 0;
-    while(n>0) {
-        sum += n%10;
-        n/=10;
-    }
-    return sum;
-}
-
-ll power(ll x, unsigned int a) {
-    ll temp;
-    if (a == 0)
-        return 1;
-
-    temp = power(x, a / 2);
-    if ((a % 2) == 0)
-        return temp * temp;
-    else
-        return x * temp * temp;
-}
-
 int main() {
     fast_cin();
-    ll b,c,x;
-    unsigned int a;
-    cin >> a >> b >> c;
-    v64 v;
-    forsn(x, 1, 82) {
-        ll val = b * power(x, a) + c;
+    int n;
+    cin >> n;
+    int a[n],b[n];
+    forn(i,n)   cin >> a[i] >> b[i];
+    int count = n;
+    forn(i,n) {
+        forn(j,n) {
+            if(j==i) continue;
 
-        if (sx(val)==x && val>0 && val<1e9)
-            v.pb(val);
+            if(b[j]==a[i]) {
+                count--;
+                break;
+            }
+        }
     }
-    sort(v.begin(), v.end());
-    cout << v.size() << ln;
-    if (v.size() > 0) {
-        cout << v[0];
-        forsn(i, 1, v.size()) cout << " " << v[i];
-        cout << ln;
-    }
+    cout << count << ln;
     return 0;
 }
