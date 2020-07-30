@@ -33,7 +33,32 @@ ll NUM = 1e9+7;
 #define zer ll(0)
 #define printarr(arr,n) forn(i,n)   cout << arr[i] << " "
 
+lluu binomialCoeff(int n, int k) {
+    lluu res = 1;
+
+    if (k > n-k)    k=n-k;
+
+    for(int i=0; i<k; i++) {
+        res *= (n-i);
+        res /= (i+1);
+    }
+
+    return res;
+}
+
+lluu catalan(int n) {
+    lluu c = binomialCoeff(2*n, n);
+    return c/(n+1);
+}
+
 int main() {
     fast_cin();
+    int t;
+    cin >> t;
+    while(t--) {
+        int n;
+        cin >> n;
+        cout << catalan(n)%NUM << ln;
+    }
     return 0;
 }

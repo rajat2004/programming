@@ -33,7 +33,57 @@ ll NUM = 1e9+7;
 #define zer ll(0)
 #define printarr(arr,n) forn(i,n)   cout << arr[i] << " "
 
+void err() {
+    cout << "NO" << ln;
+}
+void success() {
+    cout << "YES" << ln;
+}
+
+void solve() {
+    string s1,s2;
+    cin >> s1 >> s2;
+
+    int MAX_CHARS = 256;
+
+    int m=s1.length(), n=s2.length();
+
+    if(m!=n) {
+        err();
+        return;
+    }
+
+    int map[MAX_CHARS];
+    memset(map, -1, MAX_CHARS*sizeof(int));
+
+    bool marked[MAX_CHARS];
+    memset(marked, false, MAX_CHARS*sizeof(bool));
+
+    forn(i,m) {
+        if(map[s1[i]]==-1) {
+            if(marked[s2[i]]) {
+                err();
+                return;
+            }
+
+            map[s1[i]] = s2[i];
+            marked[s2[i]] = true;
+        }
+        else if (map[s1[i]]!=s2[i]) {
+            err();
+            return;
+        }
+    }
+
+    success();
+}
+
 int main() {
     fast_cin();
+    int t;
+    cin >> t;
+    while(t--) {
+        solve();
+    }
     return 0;
 }

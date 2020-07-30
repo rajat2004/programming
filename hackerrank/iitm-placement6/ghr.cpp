@@ -33,7 +33,34 @@ ll NUM = 1e9+7;
 #define zer ll(0)
 #define printarr(arr,n) forn(i,n)   cout << arr[i] << " "
 
+bool ghr(string a, string b) {
+    int a_len = a.length(), b_len = b.length();
+
+    if(a == b)
+        return true;
+
+    string a1 = a.substr(0, a_len/2);
+    string a2 = a.substr(a_len/2);
+
+    string b1 = b.substr(0, b_len/2);
+    string b2 = b.substr(b_len/2);
+
+    // cout << a1 << " " << a2 << "  " << b1 << " " << b2 << ln;
+
+    if(a1.length()!=a2.length() || b1.length()!=b2.length())
+        return false;
+
+    bool ans = ((ghr(a1,b1) && ghr(a2,b2)) || (ghr(a1,b2) && ghr(a2,b1)));
+    // dbg(ans);
+    return ans;
+}
+
 int main() {
     fast_cin();
+    int n,m;
+    string a,b;
+    cin >> n >> a >> m >> b;
+    if(ghr(a,b))  cout << "YES" << ln;
+    else  cout << "NO" << ln;
     return 0;
 }
