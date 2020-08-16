@@ -32,18 +32,26 @@ ll NUM = 1e9+7;
 #define sz(x) ((ll)(x).size())
 #define zer ll(0)
 #define printarr(arr,n) forn(i,n)   cout << arr[i] << " "
-#define input(arr,n) forn(i,n)  cin >> arr[i]
-
-void solve() {
-
-}
 
 int main() {
-    fast_cin();
+    // fast_cin();
     int t;
     cin >> t;
     while(t--) {
-        solve();
+        int n;
+        cin >> n;
+        bool a[n+1];
+        int tmp;
+        memset(a, 0, (n+1)*sizeof(bool));
+
+        for(int i=0; i<(2*n); i++) {
+            cin >> tmp;
+            if(!a[tmp]) {
+                cout << tmp << " ";
+                a[tmp] = true;
+            }
+        }
+        cout << ln;
     }
     return 0;
 }

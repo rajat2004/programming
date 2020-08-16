@@ -32,10 +32,36 @@ ll NUM = 1e9+7;
 #define sz(x) ((ll)(x).size())
 #define zer ll(0)
 #define printarr(arr,n) forn(i,n)   cout << arr[i] << " "
-#define input(arr,n) forn(i,n)  cin >> arr[i]
 
-void solve() {
+void ans(int a, int b, int c) {
+    cout << "YES" << ln;
+    cout << a << " " << b << " " << c << ln;
+}
 
+void err() {
+    cout << "NO" << ln;
+}
+
+void solve(int a[]) {
+    if(a[0]==a[1] && a[1]==a[2]) {
+        ans(a[0],a[1],a[2]);
+        return;
+    }
+
+    if (a[0]==a[1] && a[1]!=a[2]) {
+        ans(a[0], a[2], 1);
+        return;
+    }
+
+    if(a[0]!=a[1] && a[1]==a[2]) {
+        err();
+        return;
+    }
+
+    if (a[0]!=a[1] && a[1]!=a[2]) {
+        err();
+        return;
+    }
 }
 
 int main() {
@@ -43,7 +69,11 @@ int main() {
     int t;
     cin >> t;
     while(t--) {
-        solve();
+        int x,y,z;
+        cin >> x >> y >> z;
+        int arr[] = {x,y,z};
+        sort(arr, arr+3, std::greater<int>());
+        solve(arr);
     }
     return 0;
 }

@@ -35,7 +35,29 @@ ll NUM = 1e9+7;
 #define input(arr,n) forn(i,n)  cin >> arr[i]
 
 void solve() {
+    int n;
+    cin >> n;
+    v32 weights(n);
 
+    v32 count(n+1, 0);
+    for(int i=0; i<n; i++) {
+        int x;
+        cin >> x;
+        count[x]++;
+    }
+
+    int ans=0;
+    for(int s=2; s<=2*n; s++) {
+        int cur=0;
+        for(int i=1; i<(s+1)/2; i++) {
+            if (s-i > n)    continue;
+            cur += min(count[i], count[s-i]);
+        }
+        if (s%2==0) cur += count[s/2]/2;
+        ans = max(cur, ans);
+    }
+
+    cout << ans << ln;
 }
 
 int main() {

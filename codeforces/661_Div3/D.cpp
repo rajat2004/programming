@@ -35,7 +35,44 @@ ll NUM = 1e9+7;
 #define input(arr,n) forn(i,n)  cin >> arr[i]
 
 void solve() {
+    int n;
+    cin >> n;
+    string s;
+    cin >> s;
+    v32 index(n), pos0,pos1;
+    int count = 0;
 
+    for (int i=0; i<n; i++) {
+        // Search through all subsequences
+        int j= pos0.size() + pos1.size();
+
+        if (s[i]=='0') {
+            if (pos1.empty()) {
+                pos0.push_back(j);
+            }
+            else {
+                j = pos1.back();
+                pos1.pop_back();
+                pos0.push_back(j);
+            }
+        }
+        else {
+            if (pos0.empty()) {
+                pos1.push_back(j);
+            }
+            else {
+                j = pos0.back();
+                pos0.pop_back();
+                pos1.push_back(j);
+            }
+        }
+
+        index[i] = j;
+    }
+
+    cout << pos0.size() + pos1.size() << ln;
+    for(auto it:index)  cout << it+1 << " ";
+    cout << ln;
 }
 
 int main() {

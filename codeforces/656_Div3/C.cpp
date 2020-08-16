@@ -32,10 +32,16 @@ ll NUM = 1e9+7;
 #define sz(x) ((ll)(x).size())
 #define zer ll(0)
 #define printarr(arr,n) forn(i,n)   cout << arr[i] << " "
-#define input(arr,n) forn(i,n)  cin >> arr[i]
 
-void solve() {
 
+void solve(int* arr, int n) {
+    int pos = n-1;
+    while(pos>0 && arr[pos-1]>=arr[pos])
+        pos--;
+    while(pos>0 && arr[pos-1]<=arr[pos])
+        pos--;
+
+    cout << pos << ln;
 }
 
 int main() {
@@ -43,7 +49,11 @@ int main() {
     int t;
     cin >> t;
     while(t--) {
-        solve();
+        int n;
+        cin >> n;
+        int arr[n];
+        forn(i,n)   cin >> arr[i];
+        solve(arr, n);
     }
     return 0;
 }

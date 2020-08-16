@@ -32,10 +32,25 @@ ll NUM = 1e9+7;
 #define sz(x) ((ll)(x).size())
 #define zer ll(0)
 #define printarr(arr,n) forn(i,n)   cout << arr[i] << " "
-#define input(arr,n) forn(i,n)  cin >> arr[i]
 
 void solve() {
+    int n;
+    cin >> n;
+    v32 va(n),vb(n);
+    forn(i,n)   cin >> va[i];
+    forn(i,n)   cin >> vb[i];
 
+    int min_a = *min_element(va.begin(), va.end());
+    int min_b = *min_element(vb.begin(), vb.end());
+
+    ll sum = 0;
+
+    forn(i,n) {
+        int da = va[i]-min_a, db=vb[i]-min_b;
+        int common = min(da,db);
+        sum += common + (da-common) + (db-common);
+    }
+    cout << sum << ln;
 }
 
 int main() {
