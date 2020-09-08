@@ -38,15 +38,66 @@ void solve() {
     int n;
     cin >> n;
     v32 v(n);
-    input(v,n);
-    ll count=0, sum=0;
 
-    for(int i=n-1; i>=0; i--) {
-        sum += v[i];
-        count = max(count, sum);
+    int sumo=0, sume=0;
+    for(int i=0; i<n; i++) {
+        cin >> v[i];
+        if (i%2==0) sume+=v[i];
+        else        sumo+=v[i];
     }
 
-    cout << count << ln;
+    if (sume==sumo) {
+        cout << n << ln;
+        printarr(v, n);
+        cout << ln;
+        return;
+    }
+
+    vector<bool> keep(n, true);
+    int i=0,j;
+    for(i=0; i<n; i++) {
+        if (v[i]==1)
+            break;
+    }
+    j=i+1;
+
+    while(i<n && j<n) {
+        while(j<n && v[j]==0)
+            j++;
+
+        if (j==n) {
+            keep[i] = false;
+            break;
+        }
+
+        if ((j-i)%2==0) {
+            keep[j-1] = false;
+            // i=j;
+            // j=i+1;
+        }
+        // else {
+        //     i=j;
+        //     j++;
+        // }
+
+        i=j+1;
+        while(i<n && v[i]==0)
+            i++;
+        if (i==n)   break;
+        j=i+1;
+        if (j==n)   keep[i] = false;
+    }
+    int tot = 0;
+    for(int t=0; t<n; t++)
+        tot += keep[t];
+
+    cout << tot << ln;
+    for(int t=0; t<n; t++) {
+        if (keep[t])
+            cout << v[t] << " ";
+    }
+    cout << ln;
+
 }
 
 int main() {

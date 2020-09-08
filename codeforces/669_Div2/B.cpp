@@ -39,14 +39,42 @@ void solve() {
     cin >> n;
     v32 v(n);
     input(v,n);
-    ll count=0, sum=0;
+    sort(v.begin(), v.end(), greater<int>());
 
-    for(int i=n-1; i>=0; i--) {
-        sum += v[i];
-        count = max(count, sum);
+    v32 res;
+    vector<bool> used(n, false);
+
+    res.push_back(v[0]);
+    used[0] = true;
+    int req=n-1, max_gcd=v[0];
+
+    while(req>0) {
+        int curr_gcd=INT_MIN, id;
+        for(int i=1; i<n; i++) {
+            if (used[i])    continue;
+
+            int tmp=__gcd(max_gcd, v[i]);
+            if (tmp > curr_gcd) {
+                curr_gcd = tmp;
+                id = i;
+            }
+        }
+        res.push_back(v[id]);
+        used[id] = true;
+        req--;
+        max_gcd = curr_gcd;
+        if (max_gcd == 1)   break;
     }
 
-    cout << count << ln;
+    if (req>0) {
+        for (int i=0; i<n; i++) {
+            if (!used[i])
+                res.push_back(v[i]);
+        }
+    }
+
+    printarr(res, n);
+    cout << ln;
 }
 
 int main() {

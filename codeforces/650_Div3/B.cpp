@@ -35,18 +35,44 @@ ll NUM = 1e9+7;
 #define input(arr,n) forn(i,n)  cin >> arr[i]
 
 void solve() {
-    int n;
+    int n,a;
     cin >> n;
-    v32 v(n);
-    input(v,n);
-    ll count=0, sum=0;
+    int tote=0,toto=0,ce=0,co=0;
 
-    for(int i=n-1; i>=0; i--) {
-        sum += v[i];
-        count = max(count, sum);
+    forn(i,n) {
+        cin >> a;
+        if (i%2==0) {
+            if (a%2==0) {
+                ce++;
+                tote++;
+            }
+            else
+                toto++;
+        }
+        else {
+            if (a%2!=0) {
+                co++;
+                toto++;
+            }
+            else
+                tote++;
+        }
     }
 
-    cout << count << ln;
+    if (n%2==0) {
+        if (tote!=toto) {
+            cout << -1 << ln;
+            return;
+        }
+    }
+    else {
+        if (tote != (toto+1)) {
+            cout << -1 << ln;
+            return;
+        }
+    }
+
+    cout << (abs(tote-ce) + abs(toto-co))/2 << ln;
 }
 
 int main() {

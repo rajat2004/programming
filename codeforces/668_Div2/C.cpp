@@ -35,18 +35,7 @@ ll NUM = 1e9+7;
 #define input(arr,n) forn(i,n)  cin >> arr[i]
 
 void solve() {
-    int n;
-    cin >> n;
-    v32 v(n);
-    input(v,n);
-    ll count=0, sum=0;
 
-    for(int i=n-1; i>=0; i--) {
-        sum += v[i];
-        count = max(count, sum);
-    }
-
-    cout << count << ln;
 }
 
 int main() {

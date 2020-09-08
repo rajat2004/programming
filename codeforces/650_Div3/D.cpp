@@ -35,18 +35,19 @@ ll NUM = 1e9+7;
 #define input(arr,n) forn(i,n)  cin >> arr[i]
 
 void solve() {
+    string s;
+    cin >> s;
     int n;
     cin >> n;
-    v32 v(n);
-    input(v,n);
-    ll count=0, sum=0;
+    v32 b(n);
+    string t(n, '0');
+    input(b,n);
 
-    for(int i=n-1; i>=0; i--) {
-        sum += v[i];
-        count = max(count, sum);
-    }
+    v32 freq(26, 0);
+    forn(i, s.length())
+        freq[s[i]-'a']++;
 
-    cout << count << ln;
+
 }
 
 int main() {
