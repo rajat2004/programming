@@ -34,12 +34,56 @@ ll NUM = 1e9+7;
 #define printarr(arr,n) forn(i,n)   cout << arr[i] << " "
 #define input(arr,n) forn(i,n)  cin >> arr[i]
 
+void yes() { cout << "YES" << ln; }
+void no() {cout << "NO" << ln;}
+
 void solve() {
+    int n,K;
+    cin >> n >> K;
+    string s;
+    cin >> s;
+
+    for(int i=0; i<K; i++) {
+        int j=i, is01=-1;
+        if (s[i]!='?')  is01=s[i]-'0';
+
+        while(j<n) {
+            if (s[j]!='?') {
+                if (is01==-1)
+                    is01 = s[j]-'0';
+                else {
+                    if (is01 != s[j]-'0') {
+                        no();
+                        return;
+                    }
+                }
+            }
+
+            j+=K;
+        }
+
+        if (s[i]=='?' && is01!=-1)
+            s[i]='0'+is01;
+    }
+
+    // dbg(s);
+    int c0=0,c1=0;
+
+    for(int i=0; i<K; i++) {
+        if (s[i]=='0')  c0++;
+        else if (s[i]=='1')  c1++;
+    }
+
+    if (c0>K/2 || c1>K/2) {
+        no(); return;
+    }
+
+    yes();
 
 }
 
 int main() {
-    fast_cin();
+    // fast_cin();
     int t;
     cin >> t;
     while(t--) {

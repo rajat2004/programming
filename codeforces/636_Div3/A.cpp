@@ -35,27 +35,15 @@ ll NUM = 1e9+7;
 #define input(arr,n) forn(i,n)  cin >> arr[i]
 
 void solve() {
-    int n;
+    ll n;
     cin >> n;
-
-    int ones=0,zeros=0,a;
-    forn(i,n) {
-        cin >> a;
-        if (a)  ones++;
-        else zeros++;
-    }
-
-    if (zeros >= n/2) {
-        cout << n/2 << ln;
-        forn(i,n/2)   cout << "0 ";
-        cout << ln;
-    }
-    else {
-        int count=n/2;
-        if (count%2!=0) count++;
-        cout << count << ln;
-        forn(i, count)  cout << "1 ";
-        cout << ln;
+    ll mul=4;
+    while(true) {
+        if (n%(mul-1) == 0) {
+            cout << n/(mul-1) << ln;
+            return;
+        }
+        mul*=2;
     }
 }
 

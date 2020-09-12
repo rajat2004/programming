@@ -34,29 +34,51 @@ ll NUM = 1e9+7;
 #define printarr(arr,n) forn(i,n)   cout << arr[i] << " "
 #define input(arr,n) forn(i,n)  cin >> arr[i]
 
+ll maxProd(const v64& v) {
+    int n=v.size();
+    ll prod=1;
+
+    if (v[n-1]==0) {
+        return 0;
+    }
+
+    if (v[n-1]<0) {
+        for(int i=n-1; i>=n-5; i--)
+            prod*=v[i];
+        return prod;
+    }
+
+    int i=0,j=n-1;
+
+    if (v[n-1]>0) {
+        prod*=v[n-1];
+        j--;
+    }
+
+    int k2=2;   // 2 pairs
+
+    while(k2--) {
+        ll left=v[i]*v[i+1], right=v[j]*v[j-1];
+        if (left>right) {
+            prod*=left;
+            i+=2;
+        }
+        else {
+            prod*=right;
+            j-=2;
+        }
+    }
+    return prod;
+}
+
 void solve() {
     int n;
     cin >> n;
+    v64 v(n);
+    input(v,n);
 
-    int ones=0,zeros=0,a;
-    forn(i,n) {
-        cin >> a;
-        if (a)  ones++;
-        else zeros++;
-    }
-
-    if (zeros >= n/2) {
-        cout << n/2 << ln;
-        forn(i,n/2)   cout << "0 ";
-        cout << ln;
-    }
-    else {
-        int count=n/2;
-        if (count%2!=0) count++;
-        cout << count << ln;
-        forn(i, count)  cout << "1 ";
-        cout << ln;
-    }
+    sort(v.begin(), v.end());
+    cout << maxProd(v) << ln;
 }
 
 int main() {

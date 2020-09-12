@@ -34,29 +34,31 @@ ll NUM = 1e9+7;
 #define printarr(arr,n) forn(i,n)   cout << arr[i] << " "
 #define input(arr,n) forn(i,n)  cin >> arr[i]
 
+bool issame(int a, int b) {
+    return ((a>0 && b>0) || (a<0 && b<0));
+}
+
 void solve() {
     int n;
     cin >> n;
+    v32 v(n);
+    input(v,n);
 
-    int ones=0,zeros=0,a;
-    forn(i,n) {
-        cin >> a;
-        if (a)  ones++;
-        else zeros++;
-    }
+    ll tot=0;
+    int i=0,j=0,curr_max=INT_MIN;
 
-    if (zeros >= n/2) {
-        cout << n/2 << ln;
-        forn(i,n/2)   cout << "0 ";
-        cout << ln;
+    while(i<n && j<n) {
+        curr_max = INT_MIN;
+
+        while(j<n && issame(v[i], v[j])) {
+            curr_max = max(curr_max, v[j]);
+            j++;
+        }
+
+        tot+=curr_max;
+        i=j;
     }
-    else {
-        int count=n/2;
-        if (count%2!=0) count++;
-        cout << count << ln;
-        forn(i, count)  cout << "1 ";
-        cout << ln;
-    }
+    cout << tot << ln;
 }
 
 int main() {

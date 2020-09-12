@@ -37,26 +37,21 @@ ll NUM = 1e9+7;
 void solve() {
     int n;
     cin >> n;
-
-    int ones=0,zeros=0,a;
-    forn(i,n) {
-        cin >> a;
-        if (a)  ones++;
-        else zeros++;
+    if (n%4!=0) {
+        cout << "NO" << ln;
+        return;
     }
-
-    if (zeros >= n/2) {
-        cout << n/2 << ln;
-        forn(i,n/2)   cout << "0 ";
-        cout << ln;
+    cout << "YES" << ln;
+    int even=4, odd=5;
+    for(int i=0; i<n/4; i++) {
+        cout << even-2 << " " << even << " ";
+        even+=6;
     }
-    else {
-        int count=n/2;
-        if (count%2!=0) count++;
-        cout << count << ln;
-        forn(i, count)  cout << "1 ";
-        cout << ln;
+    for(int i=0; i<n/4; i++) {
+        cout << odd-4 << " " << odd << " ";
+        odd+=6;
     }
+    cout << ln;
 }
 
 int main() {

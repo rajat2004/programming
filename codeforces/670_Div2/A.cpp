@@ -34,29 +34,30 @@ ll NUM = 1e9+7;
 #define printarr(arr,n) forn(i,n)   cout << arr[i] << " "
 #define input(arr,n) forn(i,n)  cin >> arr[i]
 
+int mex(const set<int>& st) {
+    auto it=st.begin();
+    int i=0;
+    for(; i<st.size(), it!=st.end(); i++, it++) {
+        if (*it!=i)
+            return i;
+    }
+    return i;
+}
+
 void solve() {
-    int n;
+    int n,tmp;
     cin >> n;
+    set<int> a,b;
 
-    int ones=0,zeros=0,a;
     forn(i,n) {
-        cin >> a;
-        if (a)  ones++;
-        else zeros++;
+        cin >> tmp;
+        if (a.find(tmp)!=a.end())
+            b.insert(tmp);
+        else
+            a.insert(tmp);
     }
 
-    if (zeros >= n/2) {
-        cout << n/2 << ln;
-        forn(i,n/2)   cout << "0 ";
-        cout << ln;
-    }
-    else {
-        int count=n/2;
-        if (count%2!=0) count++;
-        cout << count << ln;
-        forn(i, count)  cout << "1 ";
-        cout << ln;
-    }
+    cout << mex(a) + mex(b) << ln;
 }
 
 int main() {
