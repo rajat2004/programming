@@ -37,7 +37,35 @@ ll NUM = 1e9+7;
 #define no() cout << "No" << ln
 
 void solve() {
+    int n,x;
+    cin >> n >> x;
+    v32 v(n);
 
+    int ceqx=0, sum_diff=0;
+
+    forn(i,n) {
+        cin >> v[i];
+        if (v[i]==x)
+            ceqx++;
+        sum_diff += (v[i]-x);
+    }
+
+    if (ceqx==n) {
+        cout << 0 << ln;
+        return;
+    }
+
+    if (sum_diff==0) {
+        cout << 1 << ln;
+        return;
+    }
+
+    if (ceqx==0) {
+        cout << 2 << ln;
+    }
+    else {
+        cout << 1 << ln;
+    }
 }
 
 int main() {

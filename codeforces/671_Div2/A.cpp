@@ -37,7 +37,37 @@ ll NUM = 1e9+7;
 #define no() cout << "No" << ln
 
 void solve() {
+    int n;
+    cin >> n;
+    string s;
+    cin >> s;
 
+    if (n%2!=0) {
+        bool odd_has_odd = false;
+        for(int i=1; i<=n; i+=2) {
+            if ((s[i-1]-'0')%2!=0) {
+                odd_has_odd = true;
+                break;
+            }
+        }
+        if (odd_has_odd)
+            cout << 1 << ln;
+        else
+            cout << 2 << ln;
+    }
+    else {
+        bool even_has_even = false;
+        for(int i=2; i<=n; i+=2) {
+            if ((s[i-1]-'0')%2==0) {
+                even_has_even = true;
+                break;
+            }
+        }
+        if (even_has_even)
+            cout << 2 << ln;
+        else
+            cout << 1 << ln;
+    }
 }
 
 int main() {

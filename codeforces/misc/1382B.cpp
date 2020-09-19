@@ -36,8 +36,35 @@ ll NUM = 1e9+7;
 #define yes() cout << "Yes" << ln
 #define no() cout << "No" << ln
 
-void solve() {
+void f() {cout << "First" << ln;}
+void s() {cout << "Second" << ln;}
 
+void solve() {
+    int n;
+    cin >> n;
+    vector<int> v(n);
+    input(v,n);
+
+    int k=-1;
+    for(int i=0; i<n; i++) {
+        if (v[i]!=1) {
+            k=i;
+            break;
+        }
+    }
+
+    if (k==-1) {
+        if (n%2==0)
+            s();
+        else
+            f();
+    }
+    else {
+        if (k%2==0)
+            f();
+        else
+            s();
+    }
 }
 
 int main() {

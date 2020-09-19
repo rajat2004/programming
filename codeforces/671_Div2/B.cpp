@@ -36,14 +36,55 @@ ll NUM = 1e9+7;
 #define yes() cout << "Yes" << ln
 #define no() cout << "No" << ln
 
-void solve() {
+vector<lluu> sq_req;
+vector<lluu> tot_sq_req;
 
+
+void solve() {
+    lluu x;
+    cin >> x;
+
+    auto it = lower_bound(tot_sq_req.begin(), tot_sq_req.end(), x);
+
+    if (*it==x) {
+        cout << (it-tot_sq_req.begin())+1 << ln;
+    }
+    else {
+        cout << (it-tot_sq_req.begin()) << ln;
+    }
+}
+
+void generate() {
+    sq_req.clear();
+    tot_sq_req.clear();
+
+    sq_req.push_back(1);
+    lluu curr=1, sq_size=2;
+
+    while(true) {
+        lluu new_size = curr*2 + sq_size*sq_size;
+        if (new_size > INF)
+            break;
+        sq_req.push_back(new_size);
+        curr = new_size;
+        sq_size*=2;
+    }
+
+    // printarr(sq_req, sq_req.size());
+    // cout << ln;
+    tot_sq_req.push_back(1);
+
+    for(int i=1; i<sq_req.size(); i++)
+        tot_sq_req.push_back(sq_req[i]+tot_sq_req[i-1]);
+
+    // printarr(tot_sq_req, tot_sq_req.size());
 }
 
 int main() {
     fast_cin();
     int t;
     cin >> t;
+    generate();
     while(t--) {
         solve();
     }

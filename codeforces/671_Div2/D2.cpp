@@ -37,13 +37,41 @@ ll NUM = 1e9+7;
 #define no() cout << "No" << ln
 
 void solve() {
+    int n;
+    cin >> n;
+    v32 v(n);
+    input(v,n);
+    sort(v.begin(), v.end());
 
+    int tot_count = (n-1)/2;
+    v32 res(n, -1);
+    int og_id = 0;
+
+    for(int i=1; i<n; i+=2) {
+        res[i] = v[og_id];
+        og_id++;
+    }
+
+    for(int i=0; i<n; i++) {
+        if (res[i]==-1) {
+            res[i] = v[og_id];
+            if (i<n-1) {
+                if (i!=n-2 && res[i+1]!=-1 && res[i]==res[i+1])
+                    tot_count--;
+            }
+            og_id++;
+        }
+    }
+
+    cout << tot_count << ln;
+    printarr(res, n);
+    cout << ln;
 }
 
 int main() {
     fast_cin();
-    int t;
-    cin >> t;
+    int t=1;
+    // cin >> t;
     while(t--) {
         solve();
     }
