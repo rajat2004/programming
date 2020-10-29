@@ -37,7 +37,26 @@ ll NUM = 1e9+7;
 #define no() cout << "No" << ln
 
 void solve() {
+    int n;
+    cin >> n;
+    v32 v(n);
+    input(v,n);
+    sort(v.begin(), v.end());
 
+    int MAXT=400;
+    vv32 dp(n+1, v32(MAXT, 1e5));
+
+    for(int i=0; i<MAXT; i++)
+        dp[0][i] = 0;
+
+    for(int i=1; i<=n; i++) {
+        for (int T=1; T<MAXT; T++) {
+            for(int t=T-1; t>0; t--)
+                dp[i][T] = min(dp[i][T], dp[i-1][t] + abs(t-v[i-1]));
+        }
+    }
+
+    cout << dp[n][MAXT-1] << endl;
 }
 
 int main() {

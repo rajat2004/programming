@@ -37,7 +37,21 @@ ll NUM = 1e9+7;
 #define no() cout << "No" << ln
 
 void solve() {
+    int n;
+    cin >> n;
+    v32 v(n), height(n);
+    input(v,n);
 
+    height[0] = 0;
+    int par = 0;
+    forsn(i,1,n) {
+        if (i>1 && v[i-1]>v[i])
+            par++;
+
+        height[i] = height[par] + 1;
+    }
+
+    cout << height[n-1] << endl;
 }
 
 int main() {

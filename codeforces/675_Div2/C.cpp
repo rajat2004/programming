@@ -36,20 +36,41 @@ ll NUM = 1e9+7;
 #define yes() cout << "Yes" << ln
 #define no() cout << "No" << ln
 
-void solve() {
+ll mod(const string& s, const vector<bool>& present,  int l=0, int r=-1) {
+    ll sum=0;
+    if (r==-1)
+        r=s.length();
+    for(int i=l; i<r; i++) {
+        if (present[i])
+            sum = (sum*10 + (s[i]-'0'))%NUM;
+    }
+    return sum;
+}
 
+void solve() {
+    vector<char> vc;
+    string s;
+    cin >> s;
+
+    int n=s.size();
+    ll res=0;
+
+    for(int start=0; start<n; start++) {
+        vector<bool> present(n, true);
+
+        for(int i=start; i<n; i++) {
+            present[i] = false;
+            res = (res+mod(s,present))%NUM;
+        }
+    }
+
+    cout << res << ln;
 }
 
 int main() {
     fast_cin();
-
-    #ifndef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-    #endif
-
     int t=1;
-    cin >> t;
+    // cin >> t;
     while(t--) {
         solve();
     }

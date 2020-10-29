@@ -36,22 +36,65 @@ ll NUM = 1e9+7;
 #define yes() cout << "Yes" << ln
 #define no() cout << "No" << ln
 
+const int MAXN=1e5;
+vector<bool> isprime(MAXN+1, true);
+
+void generate() {
+    isprime[1] = false;
+    isprime[2] = true;
+
+    for(int i=4; i<MAXN; i+=2)
+        isprime[i] = false;
+    cout << "Hello" << endl;
+
+    for(int i=3; i<MAXN; i+=2) {
+        if (isprime[i]) {
+            cout << i << endl;
+            for(long long p=i*i; p<=MAXN; p+=i)
+                isprime[p] = false;
+        }
+    }
+}
+
+void output(vector<int> &v) {
+    int n=v.size();
+    for(int start=0; start<n; start++) {
+        cout << v[start];
+        for(int i=(start+1)%n; i!=start; i=(i+1)%n)
+            cout << " " << v[i];
+        cout << endl;
+    }
+}
+
 void solve() {
+    int n;
+    cin >> n;
+
+    if (isprime[n]) {
+        vector<int> res(n, 1);
+        output(res);
+    }
+    else {
+        vector<int> res(n-1, 1);
+        int i;
+        for(i=1; i<MAXN; i++) {
+            if (!isprime[i] && isprime[n-1+i])
+                break;
+        }
+
+        res.push_back(i);
+        output(res);
+    }
 
 }
 
 int main() {
     fast_cin();
-
-    #ifndef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-    #endif
-
     int t=1;
     cin >> t;
-    while(t--) {
-        solve();
-    }
+    generate();
+    // while(t--) {
+    //     solve();
+    // }
     return 0;
 }

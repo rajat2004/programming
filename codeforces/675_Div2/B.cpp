@@ -37,17 +37,41 @@ ll NUM = 1e9+7;
 #define no() cout << "No" << ln
 
 void solve() {
+    int n,m;
+    cin >> n >> m;
+    vv32 mat(n, v32(m));
+    forn(i,n) {
+        forn(j,m) {
+            cin >> mat[i][j];
+        }
+    }
 
+    ll res=0;
+    int rowl = (n%2==0) ? n/2-1 : n/2;
+    int coll = (m%2==0) ? m/2-1 : m/2;
+
+    for(int i=0; i<=rowl; i++) {
+        for(int j=0; j<=coll; j++) {
+            v32 v{mat[i][j], mat[i][m-j-1], mat[n-i-1][j], mat[n-i-1][m-j-1]};
+            sort(v.begin(), v.end());
+            ll sum = (v[1]+v[2])/2;
+
+            res += abs(sum-mat[i][j]);
+
+            if (i!=(n-i-1))
+                res+=abs(sum-mat[n-i-1][j]);
+            if (j!=(m-j-1))
+                res+= abs(sum-mat[i][m-j-1]);
+            if (i!=(n-i-1) && j!=(m-j-1))
+                res+=abs(sum-mat[n-i-1][m-j-1]);
+        }
+    }
+
+    cout << res << ln;
 }
 
 int main() {
     fast_cin();
-
-    #ifndef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-    #endif
-
     int t=1;
     cin >> t;
     while(t--) {

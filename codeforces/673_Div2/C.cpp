@@ -36,18 +36,52 @@ ll NUM = 1e9+7;
 #define yes() cout << "Yes" << ln
 #define no() cout << "No" << ln
 
-void solve() {
+const int MAXN=3e5+5;
 
+v32 diff(MAXN), last_id(MAXN), res(MAXN);
+
+void solve() {
+    int n;
+    cin >> n;
+    v32 v(n);
+    input(v,n);
+
+    // v32 diff(n+1, INT_MIN), last_id(n+1, -1);
+
+    for(int i=0; i<=n; i++) {
+        diff[i]=INT_MIN;
+        last_id[i] = -1;
+        res[i] = -1;
+    }
+
+    for(int i=0; i<n; i++) {
+        diff[v[i]] = max(diff[v[i]], i-last_id[v[i]]);
+        last_id[v[i]] = i;
+    }
+
+    // v32 res(n, -1);
+
+    for(int i=1; i<=n; i++) {
+        diff[i] = max(diff[i], n-last_id[i]);
+
+        if (diff[i]<=n) {
+            int j=diff[i]-1;
+            while(j<n) {
+                if (res[j]!=-1)
+                    break;
+
+                res[j] = i;
+                j++;
+            }
+        }
+    }
+
+    printarr(res, n);
+    cout << ln;
 }
 
 int main() {
     fast_cin();
-
-    #ifndef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-    #endif
-
     int t=1;
     cin >> t;
     while(t--) {

@@ -37,17 +37,31 @@ ll NUM = 1e9+7;
 #define no() cout << "No" << ln
 
 void solve() {
+    int n;
+    cin >> n;
+    string s;
+    cin >> s;
+    int c0=0, c1=0, i=0;
 
+    while(i<n) {
+        char c=s[i];
+        int j=i;
+        while(j<n && s[j]==c)
+            j++;
+
+        if (c=='1')
+            c1 += j-i-1;
+        else
+            c0 += j-i-1;
+
+        i=j;
+    }
+
+    cout << max(c0, c1) << endl;
 }
 
 int main() {
     fast_cin();
-
-    #ifndef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-    #endif
-
     int t=1;
     cin >> t;
     while(t--) {

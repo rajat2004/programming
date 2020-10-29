@@ -37,17 +37,31 @@ ll NUM = 1e9+7;
 #define no() cout << "No" << ln
 
 void solve() {
+    int n,t;
+    cin >> n >> t;
+    bool choice=false;
 
+    for(int i=0; i<n; i++) {
+        int x; cin >> x;
+        bool r;
+
+        if (t%2==0 && x==t/2) {
+            r = choice;
+            choice = !choice;
+        }
+        else if (2*x < t)
+            r = 0;
+        else
+            r = 1;
+
+        cout << r << " ";
+    }
+
+    cout << ln;
 }
 
 int main() {
     fast_cin();
-
-    #ifndef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-    #endif
-
     int t=1;
     cin >> t;
     while(t--) {
