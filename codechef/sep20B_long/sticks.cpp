@@ -3,6 +3,7 @@
 using namespace std;
 
 typedef long long int ll;
+typedef long long unsigned lluu;
 typedef long double ld;
 typedef pair<int,int> p32;
 typedef pair<ll,ll> p64;
@@ -30,36 +31,29 @@ ll NUM = 1e9+7;
 #define all(x) (x).begin(), (x).end()
 #define sz(x) ((ll)(x).size())
 #define zer ll(0)
+#define printarr(arr,n) forn(i,n)   cout << arr[i] << " "
+#define input(arr,n) forn(i,n)  cin >> arr[i]
+
+void solve() {
+    int n,tmp;
+    cin >> n;
+    unordered_set<int> st;
+    forn(i,n) {
+        cin >> tmp;
+        st.insert(tmp);
+    }
+    size_t ans = st.size();
+    if (st.find(0)!=st.end())
+        ans--;
+    cout << ans << ln;
+}
 
 int main() {
     fast_cin();
-    int T;
-    cin >> T;
-    forsn(t,1,T+1) {
-        int n,k,p;
-        int a[n][k];
-        // forn(i,n) {
-        //     forn(j,k) {
-        //         a[n]
-        //     }
-        // }
-        for(int i=0; i<n; i++) {
-            cin >> a[i][0];
-            for(int j=1; j<k; j++) {
-                cin >> a[i][j];
-                a[i][j] += a[i][j-1];
-            }
-        }
-
-        int arr[n];
-        forn(i,n)
-            arr[n]=0;
-        int sum=0;
-        forn(i,n) {
-            // forn(j,k) {
-
-            // }
-        }
+    int t;
+    cin >> t;
+    while(t--) {
+        solve();
     }
     return 0;
 }
